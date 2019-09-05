@@ -1,14 +1,14 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-//const CONFIG =  require ('./config.json');
+const CRED =  require ('./credenthials.json');
 
 let page;
 let browser;
 const width = 1366;
 const height = 768;
 const APP = "https://app.theeye.io/dashboard#";
-const user = "agustin+qatest@theeye.io"
-const pass = "Automation2019!"
+const user = CRED.user;
+const pass = CRED.pass;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
