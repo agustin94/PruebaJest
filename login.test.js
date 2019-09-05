@@ -4,8 +4,8 @@ const fs = require("fs");
 
 let page;
 let browser;
-const width = 1920;
-const height = 1080;
+const width = 1366;
+const height = 768;
 const APP = "https://app.theeye.io/dashboard#";
 const user = "agustin+qatest@theeye.io"
 const pass = "Automation2019!"
@@ -13,7 +13,7 @@ const pass = "Automation2019!"
 beforeAll(async () => {
   browser = await puppeteer.launch({
     headless: false,
-    slowMo: 50,
+    slowMo: 75,
     args: [`--window-size=${width},${height}`]
   });
   page = await browser.newPage();
@@ -38,7 +38,7 @@ describe("Contact form", () => {
   test("prueba", async () => {
 
     //Click en test de prueba 
-    await page.waitForXPath('//*[@id="collapse_header_5d6031937e5352000f83e27d"]/h4[2]/span/div/div[2]/li/button', 5000);
+    await page.waitForXPath('//*[@id="collapse_header_5d6031937e5352000f83e27d"]/h4[2]/span/div/div[2]/li/button');
     const [setting] = await page.$x('//*[@id="collapse_header_5d6031937e5352000f83e27d"]/h4[2]/span/div/div[2]/li/button');
     if(setting) setting.click();
 
@@ -54,38 +54,27 @@ describe("Contact form", () => {
 
       console.log("pass!!!");
     
-      //iremos a menu
-      await page.waitFor(1000);
-      await page.waitForSelector('span[ data-hook="menu-toggle"]');
-      await page.$eval('span[ data-hook="menu-toggle"]', el => el.click());
 
-      //deslogueamos
-      await page.waitFor(1000);
-      await page.waitForSelector('a[ data-hook="logout"]');
-      await page.$eval('a[ data-hook="logout"]', el => el.click());
-
-      browser.close();
-      //process.exit;
 
 }, 50000);
 
 
   test("Deslogin", async () => {
 
-          //iremos a menu
+      //iremos a menu
   
-          await page.waitForSelector('span[ data-hook="menu-toggle"]');
-          await page.$eval('span[ data-hook="menu-toggle"]', el => el.click());
+      await page.waitForSelector('span[ data-hook="menu-toggle"]');
+      await page.$eval('span[ data-hook="menu-toggle"]', el => el.click());
     
-          //deslogueamos
+      //deslogueamos
           
-          await page.waitForSelector('a[ data-hook="logout"]');
-          await page.$eval('a[ data-hook="logout"]', el => el.click());
-          browser.close();
+      await page.waitForSelector('a[ data-hook="logout"]');
+      await page.$eval('a[ data-hook="logout"]', el => el.click());
+      browser.close();
   },30000);
 
 });
 
-//afterAll(() => {
-  //browser.close();
-//});
+afterAll(() => {
+  browser.close();
+});
