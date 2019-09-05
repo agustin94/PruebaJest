@@ -43,6 +43,15 @@ describe("Contact form", () => {
     if(setting) setting.click();
 
     await page.waitFor(3000);
+    if (await page.$('button[ data-hook="confirm"]') !== null) 
+      console.log('found');
+    else
+      console.log('not found');
+
+
+
+
+
     await page.waitForSelector('button[ data-hook="confirm"]');
     await page.$eval('button[ data-hook="confirm"]', el => el.click());
 
@@ -51,11 +60,11 @@ describe("Contact form", () => {
 
     //verificar si corre 
       await page.waitForXPath('//*[@id="collapse_container_5d6031937e5352000f83e27d"]/div/div[2]/div[2]/div/div/h4/div/div/li/button/i[2]');
-
+   
+      
+      await page.waitForSelector('button[data-hook="action_button"]');
+     // await page.$eval('button[data-hook="action_button"]', el => el.click());
       console.log("pass!!!");
-    
-
-
 }, 50000);
 
 
@@ -75,6 +84,6 @@ describe("Contact form", () => {
 
 });
 
-afterAll(() => {
-  browser.close();
-});
+//afterAll(() => {
+ // browser.close();
+//});
