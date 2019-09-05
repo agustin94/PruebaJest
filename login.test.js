@@ -46,11 +46,7 @@ describe("Contact form", () => {
     if (await page.$('button[ data-hook="confirm"]') !== null) 
       console.log('found');
     else
-      console.log('not found');
-
-
-
-
+      console.log('not found1');
 
     await page.waitForSelector('button[ data-hook="confirm"]');
     await page.$eval('button[ data-hook="confirm"]', el => el.click());
