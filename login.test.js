@@ -54,17 +54,23 @@ describe("Contact form", () => {
     //var button1 = await page.$('button[data-hook="confirm"]')
     //button1.click();
 
-    //verificar si corre 
-      await page.waitForXPath('//*[@id="collapse_container_5d6031937e5352000f83e27d"]/div/div[2]/div[2]/div/div/h4/div/div/li/button/i[2]');
-   
+    //verificar si corre
+      //await page.waitForSelector('div[id=“collapse_container_5d811d5a7f7c3c85fbc64f73”] i.remark-success');
+
+     await page.evaluate(() => document.querySelector('div[id=“collapse_container_5d811d5a7f7c3c85fbc64f73”] i.remark-success'));
       
-      await page.waitForSelector('button[data-hook="action_button"]');
+      //await page.waitForSelector('i.fa.fa-check.remark-success') 
+      //await page.waitForXPath('//*[@id="collapse_container_5d6031937e5352000f83e27d"]/div/div[2]/div[2]/div/div/h4/div/div/li/button/i[2]');
+     
+      //i.fa.fa-check.remark-success::before
+      
+      //await page.waitForSelector('button[data-hook="action_button"]');
      // await page.$eval('button[data-hook="action_button"]', el => el.click());
       console.log("pass!!!");
 }, 50000);
 
 
-  test("Deslogin", async () => {
+  /*test("Deslogin", async () => {
 
       //iremos a menu
   
@@ -76,7 +82,7 @@ describe("Contact form", () => {
       await page.waitForSelector('a[ data-hook="logout"]');
       await page.$eval('a[ data-hook="logout"]', el => el.click());
       browser.close();
-  },30000);
+  },30000);*/
 
 });
 
